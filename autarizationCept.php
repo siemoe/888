@@ -1,0 +1,32 @@
+<?php
+$I = new AcceptanceTester($scenario);
+$I->amOnPage('/');
+$I->wantTo('perform actions and see result');
+$I->click('.header-sign__reg._action');
+$I->fillField('input[id="email"]', 'lkml@mail.ru');
+$I->fillField('#pass', 'qwerty123');
+$I->click('.auth_button.js-submitBtn');
+$I->waitForElement('.header-sign__login', 100);
+$I->click('.header-sign__login');
+$I->click('.header-login__addjob-btn._action');
+$I->waitForElement('.b-popup-addwork__select.addwork-category__select_cont', 30);
+$I->selectOption('.b-popup-addwork__select.addwork-category__select_cont', 'Категорийная вертикаль');
+$I->seeOptionIsSelected('.b-popup-addwork__select.addwork-category__select_cont', 'Категорийная вертикаль');
+$I->checkOption('.b-popup-addwork__radio-span', 'G1. Продукты питания');
+$I->waitForElement('input[id="name_work"]', 30);
+$I->fillField('input[id="name_work"]', 'Сладость-радость');
+$I->seeInField('input[id="name_work"]', 'Сладость-радость');
+$I->fillField('input[id="adv_prod"]', 'Шоколад Спартак');
+$I->checkOption('.typecompany__radio-span', 'Рекламное агентство');
+$I->fillField('#agency', 'Diva');
+$I->fillField('#customer', 'СП ОАО "Спартак"');
+$I->fillField('#idea', 'Разнообразие вкусов белорусского шоколада');
+$I->checkOption('.workseries__radio-span', 'Да');
+$I->fillField('#name_series', 'Мир шоколада');
+$I->waitForElement('#video', 30);
+$I->fillField('#video', 'https://www.youtube.com/watch?v=AMIHp1UY6r4');
+$I->fillField('#www', 'http://spartak.by/');
+$I->waitForElement('.b-popup-addwork__submit.js-submitBtn', 100);
+$I->click('.b-popup-addwork__submit.js-submitBtn');
+$I->waitForElement('.header-sign__login', 100);
+?>
